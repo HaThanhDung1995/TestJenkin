@@ -14,6 +14,7 @@ namespace DemoCICD.API.Middleware
         {
             try
             {
+                //Shit
                 await next(context);
             }
             catch (Exception e)
