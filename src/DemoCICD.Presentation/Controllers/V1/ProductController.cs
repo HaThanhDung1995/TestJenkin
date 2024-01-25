@@ -17,10 +17,10 @@ using System.Threading.Tasks;
 namespace DemoCICD.Presentation.Controllers.V1
 {
     [ApiVersion(1)]
-    public class ProductController : ApiController
+    public class ProductsController : ApiController
     {
-        private readonly ILogger<ProductController> _logger;
-        public ProductController(ISender Sender, ILogger<ProductController> logger) : base(Sender) {
+        private readonly ILogger<ProductsController> _logger;
+        public ProductsController(ISender Sender, ILogger<ProductsController> logger) : base(Sender) {
             _logger = logger;
         }
         [HttpPost(Name = "CreateProducts")]
