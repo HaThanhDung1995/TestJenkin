@@ -18,6 +18,15 @@ namespace DemoCICD.Domain.Entities
         {
             return new Product(id, name, price, description);
         }
+        public void Update(string name, decimal price, string description)
+        {
+            //if (!NameValidation(name))
+            //    throw new ArgumentNullException();
+
+            Name = name;
+            Price = price;
+            Description = description;
+        }
 
         public Product(Guid id, string name, decimal price, string description)
         {

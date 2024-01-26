@@ -1,7 +1,7 @@
 ﻿using Asp.Versioning;
 using DemoCICD.Contract.Abstractions.Shared;
 using DemoCICD.Contract.Extensions;
-using DemoCICD.Contract.Services.Products;
+using DemoCICD.Contract.Services.V1.Products;
 using DemoCICD.Contract.Shared;
 using DemoCICD.Presentation.Abstractions;
 using MediatR;
@@ -17,10 +17,10 @@ using System.Threading.Tasks;
 namespace DemoCICD.Presentation.Controllers.V1
 {
     [ApiVersion(1)]
-    public class ProductsController : ApiController
+    public class ProductController : ApiController
     {
-        private readonly ILogger<ProductsController> _logger;
-        public ProductsController(ISender Sender, ILogger<ProductsController> logger) : base(Sender) {
+        private readonly ILogger<ProductController> _logger;
+        public ProductController(ISender Sender, ILogger<ProductController> logger) : base(Sender) {
             _logger = logger;
         }
         [HttpPost(Name = "CreateProducts")]
