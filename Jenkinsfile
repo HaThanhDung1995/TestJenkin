@@ -2,7 +2,7 @@
 pipeline {
     agent any
     stages {
-        stage('for dev branch'){
+        stage('DEV BRANCH'){
             when {
                 branch 'DEV'
             }
@@ -51,7 +51,7 @@ pipeline {
             
             
         }
-        stage('for main branch'){
+        stage('PRODUCTION BRANCH'){
             when {
                 branch 'main'
             }
