@@ -6,7 +6,7 @@ node('java-agent') {
   }
 
   stage('Load') {
-    code = load 'example.groovy'
+    code = load './.idea/Jenkinsfile-dev.grovy'
   }
 
   stage('Execute') {
