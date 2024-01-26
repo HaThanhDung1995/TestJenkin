@@ -17,6 +17,7 @@ namespace DemoCICD.API.Middleware
 
                 //Hello e may alo
                 //Tach
+                //Merge master to dev//gi day
 
                 await next(context);
             }
