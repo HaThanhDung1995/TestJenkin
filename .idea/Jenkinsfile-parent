@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Parent Stage') {
+            steps {
+                echo 'Hello from Parent Stage!'
+            }
+        }
+
+        stage('Run Child Jenkinsfile') {
+            steps {
+                script {
+                    echo 'Hello from Parent Stage!'
+                    // Load the ChildJenkinsfile
+                    def childPipeline = load '.idea/Jenkinsfile-dev'
+                    childPipeline()
+                }
+            }
+        }
+    }
+}
