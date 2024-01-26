@@ -56,7 +56,7 @@ pipeline {
                 branch 'PRO'
             }
             environment {
-                GIT_BRANCH = 'PROD'
+                GIT_BRANCH = 'PRO'
                 GitToken = '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'
                 GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
                 ENV = 'Production'
