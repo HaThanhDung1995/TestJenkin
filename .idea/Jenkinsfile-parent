@@ -1,8 +1,17 @@
-node {
-    echo "rootDir"
-    def rootDir = pwd()
-    echo rootDir
-    def exampleModule = load "${rootDir}@script/Example.Groovy "
-    exampleModule.exampleMethod()
-    exampleModule.otherExampleMethod()
+def code
+
+node('java-agent') {
+  stage('Checkout') {
+    echo "hello"
+  }
+
+  stage('Load') {
+    code = load 'example.groovy'
+  }
+
+  stage('Execute') {
+    code.example1()
+  }
 }
+
+code.example2()
