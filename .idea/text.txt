@@ -30,7 +30,7 @@ pipeline {
                 echo 'DEV branch'
             }
         }
-        stage('for dev branch'){
+        stage('for main branch'){
             when {
                 branch 'main'
             }
