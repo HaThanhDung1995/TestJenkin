@@ -2,7 +2,14 @@
 pipeline {
     agent any
     
-    environment {
+    
+
+    stages {
+        stage('for dev branch'){
+            when {
+                branch 'DEV'
+            }
+            environment {
 		GIT_BRANCH = 'DEV'
 		GitToken = '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'
 		GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
@@ -20,14 +27,8 @@ pipeline {
 		TrxFilePath = '.\\test\\DemoCICD.Architecture.Tests\\TestResults'
 		MainDirectory = 'C:\\WWW\\DemoCICD\\TestResults\\'
 	}
-
-    stages {
-        stage('for dev branch'){
-            when {
-                branch 'DEV'
-            }
             steps {
-                echo 'DEV branch'
+                echo ${env.GIT_BRANCH}
             }
         }
         stage('for main branch'){
