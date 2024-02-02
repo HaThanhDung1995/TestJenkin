@@ -26,7 +26,10 @@ pipeline {
 	        }
             steps {
                     git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
-                    echo 'git branch'
+                    echo "ChangeBranch = ${env.CHANGE_BRANCH}"
+                    echo "ChangeID = ${env.CHANGE_ID}"
+                    echo "BRANCH_NAME = ${env.BRANCH_NAME}"
+                    echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                     bat "dotnet restore ${env.SLN}"
                     echo 'dotnet restore'
                     bat "dotnet clean ${env.SLN}"
@@ -37,7 +40,7 @@ pipeline {
                     
                     bat "if not exist ${env.MainDirectory} mkdir ${env.MainDirectory}"
                     bat "copy ${env.TrxFilePath}\\${env.TestResultFileName} ${env.MainDirectory}"
-                    echo 'dotnet test'
+                    echo 'dotnet test2'
                     bat "dotnet publish ${env.SLN} /p:Configuration=${env.BUILD_CONFIG} /p:EnvironmentName=${env.ENV}"
                     echo 'dotnet publish'
                     bat "%windir%\\system32\\inetsrv\\appcmd stop sites ${env.WEB_SITE}"
@@ -71,6 +74,11 @@ pipeline {
                 BACKUP = 'C:\\www\\DemoCICD\\BE\\PROD_BACKUP\\PROD_%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%'
 	        }
             steps {
+                echo "CHANGE_BRANCH = ${env.CHANGE_BRANCH}"
+                echo "ChangeID = ${env.CHANGE_ID}"
+                echo "echo ${env.CHANGE_ID}"
+                    echo "BRANCH_NAME = ${env.BRANCH_NAME}"
+                    echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                 echo 'BackUp'
                 bat "xcopy ${env.WWW_ROOT} ${env.BACKUP} /e /y /i /r"
                 echo 'git branch'
@@ -100,7 +108,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'master'
+                echo "echo ${env.CHANGE_ID}"
             }
         }
         

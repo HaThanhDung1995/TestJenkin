@@ -1,6 +1,7 @@
 using DemoCICD.Application.DependencyInjection.Extensions;
 using DemoCICD.Persitence.DependencyInjection.Extensions;
 using DemoCICD.Persitence.DependencyInjection.Options;
+using DemoCICD.Infrastructure.Dapper.DependencyInjections.Extensions;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using DemoCICD.API.DependencyInjection.Extensions;
 using Serilog;
@@ -44,7 +45,7 @@ builder.Services.AddFluentValidationRulesToSwagger();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
 
-
+builder.Services.AddInfrastructureDapper();
 builder.Services
     .AddApiVersioning(options => options.ReportApiVersions = true)
     .AddApiExplorer(options =>
@@ -64,7 +65,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-if (builder.Environment.IsDevelopment() || builder.Environment.IsStaging())
+if (builder.Environment.IsDevelopment() || builder.Environment.IsStaging()|| builder.Environment.IsProduction())
     app.ConfigureSwagger();
 Log.Logger.Information("Start.........");
 app.UseMiddleware<ExceptionHandlingMiddleware>();
