@@ -24,7 +24,6 @@ pipeline {
                 TrxFilePath = '.\\test\\DemoCICD.Architecture.Tests\\TestResults'
                 MainDirectory = 'C:\\WWW\\DemoCICD\\TestResults\\'
 	        }
-            ,
             steps {
                     git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
                     echo 'git branch'
