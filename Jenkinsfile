@@ -26,7 +26,7 @@ pipeline {
 	        }
             steps {
                     git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
-                    echo "Tada = ${env.CHANGE_TARGET}"
+                    echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                     bat "dotnet restore ${env.SLN}"
                     echo 'dotnet restore'
                     bat "dotnet clean ${env.SLN}"
