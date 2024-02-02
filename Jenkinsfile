@@ -28,7 +28,7 @@ pipeline {
                     git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
                     echo "ChangeBranch = ${env.CHANGE_BRANCH}"
                     echo "ChangeID = ${env.CHANGE_ID}"
-                    echo "BRANCH_NAME = ${env.BRANCH_NAME}"
+                    echo "BRANCH_NAME = ${env.BRANCH_NAMESS}"
                     echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                     bat "dotnet restore ${env.SLN}"
                     echo 'dotnet restore'
