@@ -74,6 +74,7 @@ pipeline {
                 BACKUP = 'C:\\www\\DemoCICD\\BE\\PROD_BACKUP\\PROD_%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%'
 	        }
             steps {
+                echo "CHANGE_BRANCH = ${env.CHANGE_BRANCH}"
                 echo "ChangeID = ${env.CHANGE_ID}"
                     echo "BRANCH_NAME = ${env.BRANCH_NAME}"
                     echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
