@@ -24,30 +24,37 @@ pipeline {
                 TrxFilePath = '.\\test\\DemoCICD.Architecture.Tests\\TestResults'
                 MainDirectory = 'C:\\WWW\\DemoCICD\\TestResults\\'
 	        }
-            steps {
-                    git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
-                    echo 'git branch'
-                    bat "dotnet restore ${env.SLN}"
-                    echo 'dotnet restore'
-                    bat "dotnet clean ${env.SLN}"
-                    echo 'dotnet clean'
-                    bat "dotnet build ${env.SLN} --configuration ${env.BUILD_CONFIG}"
-                    echo 'dotnet build'
-                    bat "dotnet test ${env.SlnUnitTest} -l:trx;LogFileName=${env.TestResultFileName}"
+            stages {
+                stage('This is a level 2 stage') { 
+                    echo 'BackUp'
+                 }
+                
+            }
+            // ,
+            // steps {
+            //         git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
+            //         echo 'git branch'
+            //         bat "dotnet restore ${env.SLN}"
+            //         echo 'dotnet restore'
+            //         bat "dotnet clean ${env.SLN}"
+            //         echo 'dotnet clean'
+            //         bat "dotnet build ${env.SLN} --configuration ${env.BUILD_CONFIG}"
+            //         echo 'dotnet build'
+            //         bat "dotnet test ${env.SlnUnitTest} -l:trx;LogFileName=${env.TestResultFileName}"
                     
-                    bat "if not exist ${env.MainDirectory} mkdir ${env.MainDirectory}"
-                    bat "copy ${env.TrxFilePath}\\${env.TestResultFileName} ${env.MainDirectory}"
-                    echo 'dotnet test'
-                    bat "dotnet publish ${env.SLN} /p:Configuration=${env.BUILD_CONFIG} /p:EnvironmentName=${env.ENV}"
-                    echo 'dotnet publish'
-                    bat "%windir%\\system32\\inetsrv\\appcmd stop sites ${env.WEB_SITE}"
-                    bat "%windir%\\system32\\inetsrv\\appcmd stop apppool /apppool.name:${env.APP_POOL}"
-                    bat "echo waiting until service stopped"
-                    bat "ping google.com /n 5"
-                    bat "xcopy ${env.PUBLISH_PATH} ${env.WWW_ROOT} /e /y /i /r"
-                    bat "%windir%\\system32\\inetsrv\\appcmd start apppool /apppool.name:${env.APP_POOL}"
-                    bat "%windir%\\system32\\inetsrv\\appcmd start sites ${env.WEB_SITE}"
-                }
+            //         bat "if not exist ${env.MainDirectory} mkdir ${env.MainDirectory}"
+            //         bat "copy ${env.TrxFilePath}\\${env.TestResultFileName} ${env.MainDirectory}"
+            //         echo 'dotnet test'
+            //         bat "dotnet publish ${env.SLN} /p:Configuration=${env.BUILD_CONFIG} /p:EnvironmentName=${env.ENV}"
+            //         echo 'dotnet publish'
+            //         bat "%windir%\\system32\\inetsrv\\appcmd stop sites ${env.WEB_SITE}"
+            //         bat "%windir%\\system32\\inetsrv\\appcmd stop apppool /apppool.name:${env.APP_POOL}"
+            //         bat "echo waiting until service stopped"
+            //         bat "ping google.com /n 5"
+            //         bat "xcopy ${env.PUBLISH_PATH} ${env.WWW_ROOT} /e /y /i /r"
+            //         bat "%windir%\\system32\\inetsrv\\appcmd start apppool /apppool.name:${env.APP_POOL}"
+            //         bat "%windir%\\system32\\inetsrv\\appcmd start sites ${env.WEB_SITE}"
+            //     }
             
             
         }

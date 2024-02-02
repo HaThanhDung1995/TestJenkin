@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DemoCICD.Application.UseCases.V2.Commands.Products
 {
-    public sealed class DeleteProductCommandHandler : ICommandHandler<Command.DeleteProductCommand>
+    public sealed class DeleteProductCommandHandler : ICommandHandler<Command.DeleteProductCommandV2>
     {
         private readonly IUnitOfWork _unitOfWork; // SQL-SERVER-STRATEGY-2
 
@@ -20,7 +20,7 @@ namespace DemoCICD.Application.UseCases.V2.Commands.Products
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result> Handle(Command.DeleteProductCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(Command.DeleteProductCommandV2 request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.Products.GetByIdAsync(request.Id)
                 ?? throw new ProductException.ProductNotFoundException(request.Id);

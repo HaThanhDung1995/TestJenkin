@@ -9,10 +9,10 @@ namespace DemoCICD.Contract.Services.V2.Products
 {
     public static class Command
     {
-        public record CreateProductCommand(string Name, decimal Price, string Description) : ICommand;
+        public record CreateProductCommandV2(string Name, decimal Price, string Description) : ICommand;
 
-        public record UpdateProductCommand(Guid Id, string Name, decimal Price, string Description) : ICommand;
+        public record UpdateProductCommandV2(Guid Id, string Name, decimal Price, string Description) : ICommand;
 
-        public record DeleteProductCommand(Guid Id) : ICommand;
+        public record DeleteProductCommandV2(Guid Id) : ICommand;
     }
 }

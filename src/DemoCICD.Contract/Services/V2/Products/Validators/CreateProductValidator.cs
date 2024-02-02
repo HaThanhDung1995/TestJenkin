@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DemoCICD.Contract.Services.V2.Products.Validators
 {
-    public class CreateProductValidator : AbstractValidator<Command.CreateProductCommand>
+    public class CreateProductValidator : AbstractValidator<Command.CreateProductCommandV2>
     {
         public CreateProductValidator()
         {

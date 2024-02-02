@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DemoCICD.Application.UseCases.V2.Commands.Products
 {
-    public sealed class UpdateProductCommandHandler : ICommandHandler<Command.UpdateProductCommand>
+    public sealed class UpdateProductCommandHandler : ICommandHandler<Command.UpdateProductCommandV2>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -20,7 +20,7 @@ namespace DemoCICD.Application.UseCases.V2.Commands.Products
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result> Handle(Command.UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(Command.UpdateProductCommandV2 request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.Products.GetByIdAsync(request.Id)
                 ?? throw new ProductException.ProductNotFoundException(request.Id);

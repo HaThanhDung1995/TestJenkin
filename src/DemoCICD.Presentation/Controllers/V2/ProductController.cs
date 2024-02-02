@@ -19,7 +19,7 @@ public class ProductController : ApiController
     [HttpPost(Name = "CreateProducts")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Products([FromBody] Command.CreateProductCommand CreateProduct)
+    public async Task<IActionResult> Products([FromBody] Command.CreateProductCommandV2 CreateProduct)
     {
         var result = await Sender.Send(CreateProduct);
         return Ok(result);
@@ -70,16 +70,16 @@ public class ProductController : ApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteProducts(Guid productId)
     {
-        var result = await Sender.Send(new Command.DeleteProductCommand(productId));
+        var result = await Sender.Send(new Command.DeleteProductCommandV2(productId));
         return Ok(result);
     }
 
     [HttpPut("{productId}")]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Products(Guid productId, [FromBody] Command.UpdateProductCommand updateProduct)
+    public async Task<IActionResult> Products(Guid productId, [FromBody] Command.UpdateProductCommandV2 updateProduct)
     {
-        var updateProductCommand = new Command.UpdateProductCommand(productId, updateProduct.Name, updateProduct.Price, updateProduct.Description);
+        var updateProductCommand = new Command.UpdateProductCommandV2(productId, updateProduct.Name, updateProduct.Price, updateProduct.Description);
         var result = await Sender.Send(updateProductCommand);
         return Ok(result);
     }

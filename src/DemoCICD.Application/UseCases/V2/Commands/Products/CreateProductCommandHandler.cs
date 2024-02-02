@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DemoCICD.Application.UseCases.V2.Commands.Products
 {
-    public sealed class CreateProductCommandHandler : ICommandHandler<Command.CreateProductCommand>
+    public sealed class CreateProductCommandHandler : ICommandHandler<Command.CreateProductCommandV2>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -19,7 +19,7 @@ namespace DemoCICD.Application.UseCases.V2.Commands.Products
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result> Handle(Command.CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(Command.CreateProductCommandV2 request, CancellationToken cancellationToken)
         {
             var product = Domain.Entities.Product.CreateProduct(Guid.NewGuid(), request.Name, request.Price, request.Description);
 
