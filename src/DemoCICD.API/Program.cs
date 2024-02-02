@@ -65,7 +65,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-if (builder.Environment.IsDevelopment() || builder.Environment.IsStaging())
+if (builder.Environment.IsDevelopment() || builder.Environment.IsStaging()|| builder.Environment.IsProduction())
     app.ConfigureSwagger();
 Log.Logger.Information("Start.........");
 app.UseMiddleware<ExceptionHandlingMiddleware>();
