@@ -26,7 +26,7 @@ pipeline {
 	        }
             steps {
                     git branch: "${env.GIT_BRANCH}", url: "${env.GitUrl}"
-                    
+                    echo "ChangeBranch = ${env.CHANGE_BRANCH}"
                     echo "ChangeID = ${env.CHANGE_ID}"
                     echo "BRANCH_NAME = ${env.BRANCH_NAME}"
                     echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
