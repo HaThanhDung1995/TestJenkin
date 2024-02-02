@@ -1,6 +1,6 @@
 ﻿using Castle.Core.Logging;
 using DemoCICD.Contract.Abstractions.Messages;
-using DemoCICD.Contract.Services.Products;
+using DemoCICD.Contract.Services.V1.Products;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;

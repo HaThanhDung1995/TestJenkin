@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Warehouses\" />
-    <Folder Include="Services\Orders\" />
+    <Folder Include="Services\V1\Warehouses\" />
+    <Folder Include="Services\V1\Orders\" />
   </ItemGroup>
 
 </Project>

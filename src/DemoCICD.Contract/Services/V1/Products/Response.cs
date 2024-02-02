@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoCICD.Contract.Services.Products
+namespace DemoCICD.Contract.Services.V1.Products
 {
     public static class Response
     {

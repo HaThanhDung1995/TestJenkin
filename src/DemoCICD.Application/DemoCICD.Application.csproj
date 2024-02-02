@@ -21,8 +21,6 @@
     <Folder Include="DependencyInjection\Options\" />
     <Folder Include="UseCases\V1\Commands\Orders\" />
     <Folder Include="UseCases\V1\Queries\Orders\" />
-    <Folder Include="UseCases\V2\Commands\" />
-    <Folder Include="UseCases\V2\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
