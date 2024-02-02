@@ -76,6 +76,7 @@ pipeline {
             steps {
                 echo "CHANGE_BRANCH = ${env.CHANGE_BRANCH}"
                 echo "ChangeID = ${env.CHANGE_ID}"
+                echo "echo ${env.CHANGE_ID}"
                     echo "BRANCH_NAME = ${env.BRANCH_NAME}"
                     echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                 echo 'BackUp'
@@ -107,7 +108,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'master'
+                echo "echo ${env.CHANGE_ID}"
             }
         }
         
