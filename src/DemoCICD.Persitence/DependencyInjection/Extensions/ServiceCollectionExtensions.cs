@@ -47,7 +47,7 @@ namespace DemoCICD.Persitence.DependencyInjection.Extensions
                                 .MigrationsAssembly(typeof(ApplicationDbContext).Assembly.GetName().Name))
                 .LogTo(logger.Information,
                          new[] { DbLoggerCategory.Database.Command.Name }, LogLevel.Information);
-                ;
+
 
                 #endregion ============== SQL-SERVER-STRATEGY-1 ==============
 

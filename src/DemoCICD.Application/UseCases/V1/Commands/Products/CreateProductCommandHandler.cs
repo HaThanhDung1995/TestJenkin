@@ -1,5 +1,4 @@
 ﻿using DemoCICD.Contract.Abstractions.Messages;
-using DemoCICD.Contract.Services.Products;
 using DemoCICD.Contract.Shared;
 using DemoCICD.Domain.Abstractions.Repositories;
 using DemoCICD.Domain.Abstractions;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using DemoCICD.Application.Exceptions;
 using DemoCICD.Domain.Exceptions;
 using DemoCICD.Persitence;
+using DemoCICD.Contract.Services.V1.Products;
 
 namespace DemoCICD.Application.UseCases.V1.Commands.Products
 {

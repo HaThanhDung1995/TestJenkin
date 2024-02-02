@@ -22,7 +22,7 @@ namespace DemoCICD.Application.Behaviors
         public async Task<TResponse> Handle(TRequest request,
             RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            if (!IsCommand()) // In case TRequest is QueryRequest just ignore
+            if (!IsCommand() && !IsCommandV2()) // In case TRequest is QueryRequest just ignore
                 return await next();
 
             #region ============== SQL-SERVER-STRATEGY-1 ==============
@@ -30,32 +30,39 @@ namespace DemoCICD.Application.Behaviors
             //// Use of an EF Core resiliency strategy when using multiple DbContexts within an explicit BeginTransaction():
             //// https://learn.microsoft.com/ef/core/miscellaneous/connection-resiliency
             ///
-            
-            var strategy = _unitOfWork.GetDbContext().Database.CreateExecutionStrategy();
-            return await strategy.ExecuteAsync(async () =>
+            if (!IsCommandV2())
             {
-                await using var transaction = await _unitOfWork.GetDbContext().Database.BeginTransactionAsync();
+                var strategy = _unitOfWork.GetDbContext().Database.CreateExecutionStrategy();
+                return await strategy.ExecuteAsync(async () =>
+                {
+                    await using var transaction = await _unitOfWork.GetDbContext().Database.BeginTransactionAsync();
+                    {
+                        var response = await next();
+                        await _unitOfWork.SaveChangesAsync();
+                        transaction.CommitAsync();
+                        return response;
+                    }
+                });
+            }
+            else
+            {
+                using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
                     var response = await next();
-                    await _unitOfWork.SaveChangesAsync();
-                    await transaction.CommitAsync();
+                    //await _unitOfWork.SaveChangesAsync(cancellationToken);
+                    transaction.Complete();
+                    //await _unitOfWork.DisposeAsync();
                     return response;
                 }
-            });
+            }
+
             #endregion ============== SQL-SERVER-STRATEGY-1 ==============
 
             #region ============== SQL-SERVER-STRATEGY-2 ==============
 
             //IMPORTANT: passing "TransactionScopeAsyncFlowOption.Enabled" to the TransactionScope constructor. This is necessary to be able to use it with async/await.
 
-            //using (var transaction = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            //{
-            //    var response = await next();
-            //    await _unitOfWork.SaveChangesAsync(cancellationToken);
-            //    transaction.Complete();
-            //    await _unitOfWork.DisposeAsync();
-            //    return response;
-            //}
+            
 
             #endregion ============== SQL-SERVER-STRATEGY-2 ==============
 
@@ -63,5 +70,7 @@ namespace DemoCICD.Application.Behaviors
 
         private bool IsCommand()
             => typeof(TRequest).Name.EndsWith("Command");
+        private bool IsCommandV2()
+            => typeof(TRequest).Name.EndsWith("CommandV2");
     }
 }

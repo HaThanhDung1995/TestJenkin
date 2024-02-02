@@ -37,7 +37,7 @@ pipeline {
                     
                     bat "if not exist ${env.MainDirectory} mkdir ${env.MainDirectory}"
                     bat "copy ${env.TrxFilePath}\\${env.TestResultFileName} ${env.MainDirectory}"
-                    echo 'dotnet test'
+                    echo 'dotnet test2'
                     bat "dotnet publish ${env.SLN} /p:Configuration=${env.BUILD_CONFIG} /p:EnvironmentName=${env.ENV}"
                     echo 'dotnet publish'
                     bat "%windir%\\system32\\inetsrv\\appcmd stop sites ${env.WEB_SITE}"

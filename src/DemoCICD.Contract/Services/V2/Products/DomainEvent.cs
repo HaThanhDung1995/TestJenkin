@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoCICD.Contract.Services.Products
+namespace DemoCICD.Contract.Services.V2.Products
 {
     public static class DomainEvent
     {
