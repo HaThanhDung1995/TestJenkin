@@ -71,6 +71,7 @@ pipeline {
                 BACKUP = 'C:\\www\\DemoCICD\\BE\\PROD_BACKUP\\PROD_%date:~-4%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%'
 	        }
             steps {
+                echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                 echo 'BackUp'
                 bat "xcopy ${env.WWW_ROOT} ${env.BACKUP} /e /y /i /r"
                 echo 'git branch'
