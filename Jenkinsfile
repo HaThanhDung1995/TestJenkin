@@ -2,6 +2,13 @@
 pipeline {
     agent any
     stages {
+        script {
+                    if (env.BRANCH_NAME == 'DEV') {
+                        echo 'I only execute on the DEV branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
+                }
         stage('DEV BRANCH'){
             when {
                 branch 'DEV'
@@ -77,8 +84,8 @@ pipeline {
                 echo "CHANGE_BRANCH = ${env.CHANGE_BRANCH}"
                 echo "ChangeID = ${env.CHANGE_ID}"
                 echo "echo ${env.CHANGE_ID}"
-                    echo "BRANCH_NAME = ${env.BRANCH_NAME}"
-                    echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
+                echo "BRANCH_NAME = ${env.BRANCH_NAME}"
+                echo "CHANGE_TARGET = ${env.CHANGE_TARGET}"
                 echo 'BackUp'
                 bat "xcopy ${env.WWW_ROOT} ${env.BACKUP} /e /y /i /r"
                 echo 'git branch'
