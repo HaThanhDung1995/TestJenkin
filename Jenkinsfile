@@ -2,16 +2,23 @@ pipeline {
     agent any
     environment {
 		  GIT_BRANCH = 'PRO'
+                GIT_BRANCH = 'DEV'
                 GitToken = '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'
                 GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
-                ENV = 'Production'
+                ENV = 'Development'
                 BUILD_CONFIG = 'Release'
                 DOTNET_VERSION = 'net8.0'
                 SLN = '.\\src\\DemoCICD.API\\DemoCICD.API.csproj'
-                WEB_SITE = 'democicd.prod.com'
-                APP_POOL = 'democicd.prod.com'
+                WEB_SITE = 'democicd.dev.com'
+                APP_POOL = 'democicd.dev.com'
                 PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
-                WWW_ROOT = 'C:\\www\\DemoCICD\\BE\\PROD'
+                WWW_ROOT = 'C:\\www\\DemoCICD\\BE\\DEV'
+                
+                SlnUnitTest = '.\\DemoCICD.sln'
+                TestResultFileName = 'UnitTestRestult.trx'
+                TrxFilePath = '.\\test\\DemoCICD.Architecture.Tests\\TestResults'
+                MainDirectory = 'C:\\WWW\\DemoCICD\\TestResults\\'
+
 
 	}
     stages {
