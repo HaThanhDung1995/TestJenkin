@@ -8,10 +8,11 @@ pipeline {
                 BUILD_CONFIG = 'Release'
                 DOTNET_VERSION = 'net8.0'
                 SLN = '.\\src\\DemoCICD.API\\DemoCICD.API.csproj'
-                WEB_SITE = 'democicd.dev.com'
-                APP_POOL = 'democicd.dev.com'
+               WEB_SITE = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
+		        APP_POOL = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
+
                 PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
-                WWW_ROOT = 'C:\\www\\DemoCICD\\BE\\DEV'
+                WWW_ROOT = "${env.BRANCH_NAME == 'DEV' ? 'C:\\WWW\\DemoCICD\\BE\\DEV': 'C:\\www\\DemoCICD\\BE\\PROD'}"
                 
                 SlnUnitTest = '.\\DemoCICD.sln'
                 TestResultFileName = 'UnitTestRestult.trx'
