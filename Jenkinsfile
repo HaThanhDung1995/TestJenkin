@@ -1,25 +1,25 @@
 pipeline {
     agent any
     environment {
-		   GIT_BRANCH = 'PRO'
-                GitToken = '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'
-                GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
-                ENV = 'Development'
-                BUILD_CONFIG = 'Release'
-                DOTNET_VERSION = 'net8.0'
-                SLN = '.\\src\\DemoCICD.API\\DemoCICD.API.csproj'
-               WEB_SITE = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
-		        APP_POOL = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
+		GIT_BRANCH = "${env.BRANCH_NAME}"
+		GitToken = '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'
+		GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
+		ENV = "${env.BRANCH_NAME == 'DEV' ? 'DEV' : 'PRO'}"
+		BUILD_CONFIG = 'Release'
+		DOTNET_VERSION = 'net7.0'
+		SLN = '.\\src\\DemoCICD.API\\DemoCICD.API.csproj'
+		WEB_SITE = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
+		APP_POOL = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
+        PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
+        WWW_ROOT = 'C:\\www\\DemoCICD\\BE\\PROD'
 
-                PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
-		WWW_ROOT = "${env.BRANCH_NAME == 'DEV' ? 'C:\\WWW\\DemoCICD\\BE\\DEV': 'C:\\www\\DemoCICD\\BE\\PROD'}"
-                
-                SlnUnitTest = '.\\DemoCICD.sln'
-                TestResultFileName = 'UnitTestRestult.trx'
-                TrxFilePath = '.\\test\\DemoCICD.Architecture.Tests\\TestResults'
-                MainDirectory = 'C:\\WWW\\DemoCICD\\TestResults\\'
-
-
+		// PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
+		// WWW_ROOT = "${env.BRANCH_NAME == 'DEV' ? 'C:\\WWW\\DemoCICD\\BE\\DEV': 'C:\\www\\DemoCICD\\BE\\PROD'}"
+		
+		SlnUnitTest = '.\\DemoCICD.sln'
+		TestResultFileName = 'UnitTestRestult.trx'
+		TrxFilePath = '.\\test\\DemoCICD.Architecture.Tests\\TestResults'
+		MainDirectory = 'C:\\WWW\\DemoCICD\\TestResults\\'
 	}
     stages {
       
