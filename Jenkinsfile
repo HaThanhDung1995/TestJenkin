@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
 		  GIT_BRANCH = 'PRO'
-                GIT_BRANCH = 'DEV'
                 GitToken = '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'
                 GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
                 ENV = 'Development'
