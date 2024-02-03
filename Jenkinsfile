@@ -10,8 +10,11 @@ pipeline {
 		SLN = '.\\src\\DemoCICD.API\\DemoCICD.API.csproj'
 		WEB_SITE = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
 		APP_POOL = "${env.BRANCH_NAME == 'DEV' ? 'sieupham.dev.com' : 'democicd.prod.com'}"
-		PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
-		WWW_ROOT = "${env.BRANCH_NAME == 'DEV' ? ':\\WWW\\DemoCICD\\BE\\DEV': 'C:\\www\\DemoCICD\\BE\\PROD'}"
+        PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
+        WWW_ROOT = 'C:\\www\\DemoCICD\\BE\\PROD'
+
+		// PUBLISH_PATH = '.\\src\\DemoCICD.API\\bin\\%BUILD_CONFIG%\\%DOTNET_VERSION%\\publish'
+		// WWW_ROOT = "${env.BRANCH_NAME == 'DEV' ? 'C:\\WWW\\DemoCICD\\BE\\DEV': 'C:\\www\\DemoCICD\\BE\\PROD'}"
 		
 		SlnUnitTest = '.\\DemoCICD.sln'
 		TestResultFileName = 'UnitTestRestult.trx'
