@@ -2,13 +2,7 @@
 pipeline {
     agent any
     stages {
-        script {
-                    if (env.BRANCH_NAME == 'DEV') {
-                        echo 'I only execute on the DEV branch'
-                    } else {
-                        echo 'I execute elsewhere'
-                    }
-                }
+       
         stage('DEV BRANCH'){
             when {
                 branch 'DEV'
@@ -62,6 +56,13 @@ pipeline {
             
         }
         stage('PRODUCTION BRANCH'){
+             script {
+                    if (env.BRANCH_NAME == 'PRO') {
+                        echo 'I only execute on the DEV branch'
+                    } else {
+                        echo 'I execute elsewhere'
+                    }
+                }
             when {
                 branch 'PRO'
             }
