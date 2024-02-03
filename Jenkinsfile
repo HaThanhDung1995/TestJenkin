@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-		   GIT_BRANCH = env.BRANCH_NAME
+		   GIT_BRANCH = "${env.BRANCH_NAME}"
                 GitToken = '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'
                 GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
                 ENV = 'Development'
