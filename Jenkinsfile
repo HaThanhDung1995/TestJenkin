@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-		GIT_BRANCH = env.BRANCH_NAME
+		GIT_BRANCH = "${env.BRANCH_NAME}"
 		GitToken = 'dgk7r4t3wm7uznn27u6uqflwlhucczn4tbcfdbzszxrv7ijgizqq'
 		GitUrl = "https://${env.GitToken}@dev.azure.com/TDSolutionArchitecture/DemoCICD/_git/DemoCICD"
 		ENV = "${env.BRANCH_NAME == "DEV" ? "DEV" : "PRO"}"
