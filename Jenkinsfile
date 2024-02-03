@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
 		GIT_BRANCH = "${env.BRANCH_NAME}"
-		GitToken = 'dgk7r4t3wm7uznn27u6uqflwlhucczn4tbcfdbzszxrv7ijgizqq'
-		GitUrl = "https://${env.GitToken}@dev.azure.com/TDSolutionArchitecture/DemoCICD/_git/DemoCICD"
+		GitToken = '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'
+		GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
 		ENV = "${env.BRANCH_NAME == "DEV" ? "DEV" : "PRO"}"
 		BUILD_CONFIG = 'Release'
 		DOTNET_VERSION = 'net7.0'
