@@ -4,7 +4,7 @@ pipeline {
 		   GIT_BRANCH = "${env.BRANCH_NAME}"
                 GitToken = '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'
                 GitUrl = "https://${env.GitToken}@github.com/HaThanhDung1995/TestJenkin"
-                ENV = 'Development'
+                ENV = "${env.BRANCH_NAME == 'DEV' ? 'DEV' : 'PRO'}"
                 BUILD_CONFIG = 'Release'
                 DOTNET_VERSION = 'net8.0'
                 SLN = '.\\src\\DemoCICD.API\\DemoCICD.API.csproj'
